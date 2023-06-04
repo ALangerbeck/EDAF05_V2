@@ -84,8 +84,7 @@ class Graph:
         node_a = edge.node_a
         node_b = edge.node_b
         edge.node_a.edges.remove(edge)
-        edgeb = self.get_edge(node_b,node_a)
-        edge.node_b.edges.remove(edgeb)
+        edge.node_b.edges.remove(edge.residual_edge)
 
 def read_input():
     dprint("=== Reading Data ===")
@@ -179,7 +178,10 @@ def main():
         edge.node_b.add_edge(edge.residual_edge)
         maxflow = ff(graph)
         count -= 1
-
+        
+        #Realized it would probably be less calculating with
+        #Adding rather than removing
+        
         #dprint(f"Removing {graph.edges[removed_routes].edge_id}")
         #graph.remove_edge(remove_list[removed_routes])
         #new_maxflow = ff(graph)
